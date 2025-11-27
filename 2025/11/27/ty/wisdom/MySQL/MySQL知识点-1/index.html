@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MySQL知识点-1 | 天意</title><meta name="author" content="天意"><meta name="copyright" content="天意"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言其实MySQL我主要还是背的黑马的那个,但是觉得有点少,之后又去看了看二哥的,现在来也算是总结一下吧  之后要是有面试经历之类的,也可以写在这上面了  基础篇什么是MySQL ?mysql是一种开源的关系型数据库,利用二维表进行存储数据 char和varchar的区别 ? 存储结构方面:char是定长字符,varchar是变长字符 查询效率方面:一般情况下不会有太大的区别,但是当我们要考虑比较">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL知识点-1">
+<meta property="og:url" content="https://ty0119ty.github.io/2025/11/27/ty/wisdom/MySQL/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-1/index.html">
+<meta property="og:site_name" content="天意">
+<meta property="og:description" content="前言其实MySQL我主要还是背的黑马的那个,但是觉得有点少,之后又去看了看二哥的,现在来也算是总结一下吧  之后要是有面试经历之类的,也可以写在这上面了  基础篇什么是MySQL ?mysql是一种开源的关系型数据库,利用二维表进行存储数据 char和varchar的区别 ? 存储结构方面:char是定长字符,varchar是变长字符 查询效率方面:一般情况下不会有太大的区别,但是当我们要考虑比较">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tse3.mm.bing.net/th/id/OIP.tB5jHWvtUBmOBX9ilE8bdwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3">
+<meta property="article:published_time" content="2025-11-27T06:57:27.000Z">
+<meta property="article:modified_time" content="2025-11-27T08:32:54.590Z">
+<meta property="article:author" content="天意">
+<meta property="article:tag" content="基础知识">
+<meta property="article:tag" content="面经">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tse3.mm.bing.net/th/id/OIP.tB5jHWvtUBmOBX9ilE8bdwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MySQL知识点-1",
+  "url": "https://ty0119ty.github.io/2025/11/27/ty/wisdom/MySQL/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-1/",
+  "image": "https://tse3.mm.bing.net/th/id/OIP.tB5jHWvtUBmOBX9ilE8bdwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3",
+  "datePublished": "2025-11-27T06:57:27.000Z",
+  "dateModified": "2025-11-27T08:32:54.590Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "天意",
+      "url": "https://ty0119ty.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-32.jpg"><link rel="canonical" href="https://ty0119ty.github.io/2025/11/27/ty/wisdom/MySQL/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":"zh-CN","highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL知识点-1',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas-categories"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas-about"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(https://tse3.mm.bing.net/th/id/OIP.tB5jHWvtUBmOBX9ilE8bdwHaDt?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-32.jpg" alt="Logo"><span class="site-name">天意</span></a><a class="nav-page-title" href="/"><span class="site-name">MySQL知识点-1</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas-categories"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas-about"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">MySQL知识点-1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-27T06:57:27.000Z" title="发表于 2025-11-27 14:57:27">2025-11-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-27T08:32:54.590Z" title="更新于 2025-11-27 16:32:54">2025-11-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/MySQL/">MySQL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>其实MySQL我主要还是背的黑马的那个,但是觉得有点少,<br>之后又去看了看二哥的,现在来也算是总结一下吧</p>
+<blockquote>
+<p>之后要是有面试经历之类的,也可以写在这上面了</p>
+</blockquote>
+<h1 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h1><h2 id="什么是MySQL"><a href="#什么是MySQL" class="headerlink" title="什么是MySQL ?"></a>什么是MySQL ?</h2><p>mysql是一种开源的关系型数据库,利用二维表进行存储数据</p>
+<h2 id="char和varchar的区别"><a href="#char和varchar的区别" class="headerlink" title="char和varchar的区别 ?"></a>char和varchar的区别 ?</h2><ul>
+<li><strong>存储结构方面</strong>:char是定长字符,varchar是变长字符</li>
+<li><strong>查询效率方面</strong>:一般情况下不会有太大的区别,但是当我们要考虑比较强大的性能要求时,<br>我们可以将varchar变为char,比如UUID的36位字符就用char(36)</li>
+</ul>
+<h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h1><h2 id="MySQL有哪些常见存储引擎"><a href="#MySQL有哪些常见存储引擎" class="headerlink" title="MySQL有哪些常见存储引擎 ?"></a>MySQL有哪些常见存储引擎 ?</h2><p>MySQL的常见存储引擎有InnoDB,MyISAM和memory,<br>其中<strong>InnoDB</strong>是作为MySQL的默认存储引擎,原因:</p>
+<ul>
+<li>InnoDB支持事务,但是其他两个不支持</li>
+<li>InnoDB支持行级锁,锁的颗粒度更小,但是其他两个不支持</li>
+<li>InnoDB还能通过日志实现崩溃恢复,保证了数据的一致性和持久性</li>
+</ul>
+<p>但是在实际项目中,要是有其他需求,还是需要按需选择存储引擎</p>
+<h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><h2 id="MySQL的日志有哪些"><a href="#MySQL的日志有哪些" class="headerlink" title="MySQL的日志有哪些"></a>MySQL的日志有哪些</h2><p>MySQL的日志主要分为6类</p>
+<ol>
+<li>错误日志(error log) – 用于问题诊断</li>
+<li>慢查询日志(slow query log) – 用于SQL性能分析</li>
+<li>一般查询日志(general log) – 记录所有SQL语句</li>
+<li>二级制日志(binlog) – 用于主从复制和数据恢复</li>
+<li>重做日志(redo log) – 保证事务的持久性</li>
+<li>回滚日志(undo log) – 用于事务回滚和MVCC</li>
+</ol>
+<h1 id="SQL优化"><a href="#SQL优化" class="headerlink" title="SQL优化"></a>SQL优化</h1><h2 id="什么是慢SQL"><a href="#什么是慢SQL" class="headerlink" title="什么是慢SQL"></a>什么是慢SQL</h2><p>MySQL中有一个long_query_time的参数,原则上执行时间超过这个参数的值,就是慢SQL</p>
+<h2 id="如何优化SQL"><a href="#如何优化SQL" class="headerlink" title="如何优化SQL"></a>如何优化SQL</h2><p>方法非常多,但是本质上都是一句话:</p>
+<ul>
+<li>尽可能少地扫描,尽快地返回结果</li>
+</ul>
+<p>常见做法就是<strong>加索引</strong>,比如使用索引覆盖,让联合索引遵循最左前缀原则</p>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ty0119ty.github.io">天意</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ty0119ty.github.io/2025/11/27/ty/wisdom/MySQL/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-1/">https://ty0119ty.github.io/2025/11/27/ty/wisdom/MySQL/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://ty0119ty.github.io" target="_blank">天意</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a><a class="post-meta__tags" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><div class="post-share"><div class="social-share" data-image="https://tse3.mm.bing.net/th/id/OIP.tB5jHWvtUBmOBX9ilE8bdwHaDt?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/11/19/ty/skills/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7-Trae/" title="AI编程工具--Trae"><img class="cover" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/trae.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">AI编程工具--Trae</div></div><div class="info-2"><div class="info-item-1">Trae一款由字节跳动公司开发的智能编程软件 传言有数据表明发布的时候,可以排到第一名去,在2025.11.12发布,比Corsur还要厉害说是.还有SOLO功能 使用体验我也在刚开始的时候写了一下,毕竟之后可能也会和这些应用软件打交道,现在体验下来就是勉强还行,逻辑问题还是能解决的,但是很多功能都不能实现,所以至少我在觉得最好的使用这个的方法就是,自己去写后端功能,前端就让他读取整个的项目,然后将接口给配置好 还给充值了一个月的会员使用VPN开了一个账户,利用我的gmail.com邮箱开了一个账户,但是好像不开VPN的话,中国大陆是不允许使用国际版的Pro的,然后3$第一个月,之后就是10了,现在先用吧,要是好用再充值也不是不行 trae和trae CN的区别最开始我是下载的国际版本,但是听说有国内的,就下了一个CN版本,但是说实话,体验下来CN版本貌似真不如国际版一根,逻辑功能出错,前端写的接口在后端根本就没实现,我也是无语了都 </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">天意</div><div class="author-info-description">字节和心脏只有一个能跳动</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ty0119ty" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:ty011919ty@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFMySQL"><span class="toc-number">2.1.</span> <span class="toc-text">什么是MySQL ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#char%E5%92%8Cvarchar%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.2.</span> <span class="toc-text">char和varchar的区别 ?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-number">3.</span> <span class="toc-text">存储引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E8%A7%81%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-number">3.1.</span> <span class="toc-text">MySQL有哪些常见存储引擎 ?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E5%BF%97"><span class="toc-number">4.</span> <span class="toc-text">日志</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E7%9A%84%E6%97%A5%E5%BF%97%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-number">4.1.</span> <span class="toc-text">MySQL的日志有哪些</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E4%BC%98%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">SQL优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%85%A2SQL"><span class="toc-number">5.1.</span> <span class="toc-text">什么是慢SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96SQL"><span class="toc-number">5.2.</span> <span class="toc-text">如何优化SQL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">6.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%94%81"><span class="toc-number">7.</span> <span class="toc-text">锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-number">8.</span> <span class="toc-text">事务</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/11/27/ty/wisdom/MySQL/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="MySQL知识点-1"><img src="https://tse3.mm.bing.net/th/id/OIP.tB5jHWvtUBmOBX9ilE8bdwHaDt?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL知识点-1"/></a><div class="content"><a class="title" href="/2025/11/27/ty/wisdom/MySQL/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="MySQL知识点-1">MySQL知识点-1</a><time datetime="2025-11-27T06:57:27.000Z" title="发表于 2025-11-27 14:57:27">2025-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/19/ty/skills/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7-Trae/" title="AI编程工具--Trae"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/trae.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI编程工具--Trae"/></a><div class="content"><a class="title" href="/2025/11/19/ty/skills/AI%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7-Trae/" title="AI编程工具--Trae">AI编程工具--Trae</a><time datetime="2025-11-19T06:19:18.000Z" title="发表于 2025-11-19 14:19:18">2025-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/10/ty/algorithm/Algorithm-cqjtu/" title="Algorithm-cqjtu"><img src="https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Algorithm-cqjtu"/></a><div class="content"><a class="title" href="/2025/11/10/ty/algorithm/Algorithm-cqjtu/" title="Algorithm-cqjtu">Algorithm-cqjtu</a><time datetime="2025-11-10T13:33:33.000Z" title="发表于 2025-11-10 21:33:33">2025-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/03/ty/algorithm/LeetCode-hot100-2/" title="LeetCode-hot100-2"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/LeetCode_Hot100.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LeetCode-hot100-2"/></a><div class="content"><a class="title" href="/2025/11/03/ty/algorithm/LeetCode-hot100-2/" title="LeetCode-hot100-2">LeetCode-hot100-2</a><time datetime="2025-11-03T13:57:36.000Z" title="发表于 2025-11-03 21:57:36">2025-11-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/10/20/ty/algorithm/Algorithm-%E7%AE%97%E6%B3%951/" title="Algorithm/算法1"><img src="https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Algorithm/算法1"/></a><div class="content"><a class="title" href="/2025/10/20/ty/algorithm/Algorithm-%E7%AE%97%E6%B3%951/" title="Algorithm/算法1">Algorithm/算法1</a><time datetime="2025-10-20T13:44:36.000Z" title="发表于 2025-10-20 21:44:36">2025-10-20</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 天意</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
