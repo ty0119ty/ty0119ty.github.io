@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java并发编程知识点-1 | 天意</title><meta name="author" content="天意"><meta name="copyright" content="天意"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言并发编程作为企业级的一些基本能力,作为应届生的我,掌握部分即可,多线程的操作一般在普通项目中也用不到,大型项目加上并发之后还有分布式,redis集群等等的进阶操作,我还是慢慢学吧 基础说一下进程和线程的区别进程相当于一个房子,线程相当于房子里面的房间,多个房间共享一个房子的资源 进程说简单点就是我们在电脑上启动的一个个应用;它是操作系统分配资源的最小单位线程是进程中的独立执行单元;多个线程可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java并发编程知识点-1">
+<meta property="og:url" content="https://ty0119ty.github.io/2025/12/10/ty/wisdom/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9-1/index.html">
+<meta property="og:site_name" content="天意">
+<meta property="og:description" content="前言并发编程作为企业级的一些基本能力,作为应届生的我,掌握部分即可,多线程的操作一般在普通项目中也用不到,大型项目加上并发之后还有分布式,redis集群等等的进阶操作,我还是慢慢学吧 基础说一下进程和线程的区别进程相当于一个房子,线程相当于房子里面的房间,多个房间共享一个房子的资源 进程说简单点就是我们在电脑上启动的一个个应用;它是操作系统分配资源的最小单位线程是进程中的独立执行单元;多个线程可以">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png">
+<meta property="article:published_time" content="2025-12-10T02:38:38.000Z">
+<meta property="article:modified_time" content="2025-12-10T13:20:22.890Z">
+<meta property="article:author" content="天意">
+<meta property="article:tag" content="基础知识">
+<meta property="article:tag" content="面经">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Java并发编程知识点-1",
+  "url": "https://ty0119ty.github.io/2025/12/10/ty/wisdom/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9-1/",
+  "image": "https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png",
+  "datePublished": "2025-12-10T02:38:38.000Z",
+  "dateModified": "2025-12-10T13:20:22.890Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "天意",
+      "url": "https://ty0119ty.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-32.jpg"><link rel="canonical" href="https://ty0119ty.github.io/2025/12/10/ty/wisdom/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9-1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":"zh-CN","highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java并发编程知识点-1',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas-categories"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas-about"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-32.jpg" alt="Logo"><span class="site-name">天意</span></a><a class="nav-page-title" href="/"><span class="site-name">Java并发编程知识点-1</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas-categories"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas-about"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Java并发编程知识点-1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-10T02:38:38.000Z" title="发表于 2025-12-10 10:38:38">2025-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-10T13:20:22.890Z" title="更新于 2025-12-10 21:20:22">2025-12-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>并发编程作为企业级的一些基本能力,作为应届生的我,掌握部分即可,多线程的操作一般在普通项目中也用不到,<br>大型项目加上并发之后还有分布式,redis集群等等的进阶操作,我还是慢慢学吧</p>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="说一下进程和线程的区别"><a href="#说一下进程和线程的区别" class="headerlink" title="说一下进程和线程的区别"></a>说一下进程和线程的区别</h2><p>进程相当于一个房子,线程相当于房子里面的房间,多个房间共享一个房子的资源</p>
+<p><strong>进程</strong>说简单点就是我们在电脑上启动的一个个应用;它是操作系统分配资源的最小单位<br><strong>线程</strong>是进程中的独立执行单元;多个线程可以共享同一个进程的资源,<br>如内存,每个线程都有自己独立的栈和寄存器</p>
+<h2 id="说一下线程的几种创建方式"><a href="#说一下线程的几种创建方式" class="headerlink" title="说一下线程的几种创建方式"></a>说一下线程的几种创建方式</h2><ol>
+<li>继承Thread类:<ul>
+<li>重写父类的<code>run()</code>方法,并且调用<code>start()</code>方法启动</li>
+<li>缺点是不能多继承,如果已经继承了其他类,就无法继承Thread类</li>
+</ul>
+</li>
+<li>实现Runnable接口:<ul>
+<li>重写<code>run()</code>方法,将实现类对象作为参数传递给Thread的构造方法,再调用<code>strat()</code>方法启动</li>
+<li>这样避免了单继承的限制,并且更符合面向对象思想,降低耦合度</li>
+</ul>
+</li>
+<li>实现Callable接口:<ul>
+<li>重写<code>call()</code>方法,然后创建 FutureTask 对象,参数为 Callable 实现类的对象;<br> 紧接着创建 Thread 对象,参数为 FutureTask 对象,最后调用 <code>start()</code> 方法启动线程</li>
+<li>优点是可以获取线程的执行结果</li>
+</ul>
+</li>
+</ol>
+<h2 id="为什么不直接调用run-而是用start"><a href="#为什么不直接调用run-而是用start" class="headerlink" title="为什么不直接调用run(),而是用start()"></a>为什么不直接调用run(),而是用start()</h2><p>调用<code>start()</code>会创建一个新的线程,并异步执行<code>run()</code>方法中的代码;<br><strong>直接调用</strong><code>run()</code>方法只是一个普通的同步方法调用,所有代码都在当前线程中执行,不会创建新线程;<br>没有新的线程创建,也就达不到多线程并发的目的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">MyThread</span> <span class="variable">t1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyThread</span>();</span><br><span class="line">        t1.start(); <span class="comment">//输出 Thread-0</span></span><br><span class="line">        t1.run(); <span class="comment">//输出 main</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//因为start()一个新线程需要操作系统的调度</span></span><br><span class="line">    <span class="comment">//而run()是当前线程已经启动,无需等待</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>main  (run方法调用的)<br>Thread-0 (start方法调用的)<br>可以中间加sleep自己看</p>
+</blockquote>
+<h2 id="线程有几种状态"><a href="#线程有几种状态" class="headerlink" title="线程有几种状态"></a>线程有几种状态</h2><p>6种;</p>
+<p><code>new</code> 代表线程被创建但未启动;<br><code>runnable</code> 代表线程处于就绪或正在运行状态,由操作系统调度;<br><code>blocked</code> 代表线程被阻塞,等待获取锁;<br><code>waiting</code> 代表线程等待其他线程的通知或中断;<br><code>timed_waitin</code>g 代表线程会等待一段时间,超时后自动恢复;<br><code>terminated</code> 代表线程执行完毕,生命周期结束<br><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/content/Java%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.png" alt="Java线程的状态"></p>
+<h3 id="如何强制停止线程"><a href="#如何强制停止线程" class="headerlink" title="如何强制停止线程"></a>如何强制停止线程</h3><ul>
+<li>调用<code>interrupt()</code>方法,请求终止线程;</li>
+<li>在<code>run()</code>方法里面检查中断,如果捕获到了异常,就在run里面调用interrupt;</li>
+</ul>
+<h2 id="说一说-sleep-和-wait-之间的区别"><a href="#说一说-sleep-和-wait-之间的区别" class="headerlink" title="说一说 sleep 和 wait 之间的区别"></a>说一说 sleep 和 wait 之间的区别</h2><p>sleep 会让当前线程休眠,不需要获取对象锁,属于 Thread 类的方法;<br>wait 会让获得对象锁的线程等待,要提前获得对象锁,属于 Object 类的方法;</p>
+<p>详细解释一下:</p>
+<ul>
+<li>所属类不同:Tread和Object</li>
+<li>锁行为不同:<ul>
+<li>sleep期间要是有有锁,那么这个锁会一起sleep</li>
+<li>wait期间有锁,那么这个锁会释放出去,给其他线程竞争</li>
+</ul>
+</li>
+<li>使用条件不同:<ul>
+<li>sleep可以在任何地方调用</li>
+<li>wait必须在同步代码块&#x2F;同步方法种调用,因为前提是要当前线程必须有锁</li>
+</ul>
+</li>
+<li>唤醒方式不同:<ul>
+<li>调用 sleep 方法后,线程会进入 <strong>TIMED_WAITING</strong> 状态,即在指定的时间内暂停执行;<br> 当指定的时间结束后,线程会自动恢复到 <strong>RUNNABLE</strong> 状态,等待 CPU 调度再次执行</li>
+<li>调用 wait 方法后,线程会进入 <strong>WAITING</strong> 状态,直到有其他线程在同一对象上调用 notify 或 notifyAll 方法;<br> 线程才会从 WAITING 状态转变为 <strong>RUNNABLE</strong> 状态,准备再次获得 CPU 的执行权</li>
+</ul>
+</li>
+</ul>
+<h2 id="怎么保证线程安全"><a href="#怎么保证线程安全" class="headerlink" title="怎么保证线程安全"></a>怎么保证线程安全</h2><p>为了保证线程安全,可以使用<code>synchronized</code>关键字对方法加锁,对代码块加锁;<br>线程在执行同步方法、同步代码块时,会获取类锁或者对象锁,其他线程就会阻塞并等待锁</p>
+<ul>
+<li>如果需要更细粒度的锁,可以使用 <code>ReentrantLock</code> 并发重入锁等</li>
+<li>如果需要保证变量的内存可见性,可以使用 <code>volatile</code> 关键字</li>
+<li>对于简单的原子变量操作,还可以使用 <code>Atomic</code> 原子类</li>
+<li>对于线程独立的数据,可以使用 <code>ThreadLocal</code> 来为每个线程提供专属的变量副本</li>
+<li>对于需要并发容器的地方,可以使用 <code>ConcurrentHashMap</code>、<code>CopyOnWriteArrayList</code> 等</li>
+</ul>
+<h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><h2 id="ThreadLocal是什么"><a href="#ThreadLocal是什么" class="headerlink" title="ThreadLocal是什么"></a>ThreadLocal是什么</h2><p>ThreadLocal 是一种用于实现线程局部变量的工具类;<br>它允许每个线程都拥有自己的独立副本,从而实现线程隔离;</p>
+<p>使用步骤一般为:</p>
+<ol>
+<li>创建ThreadLocal</li>
+<li>设置ThreadLocal的值</li>
+<li>获取ThreadLocal的值</li>
+<li>删除ThreadLocal的值<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ThreadLocal&lt;String&gt; localVariable = <span class="keyword">new</span> <span class="title class_">ThreadLocal</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">localVariable.set(<span class="string">&quot;这里开始设置噢&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> localVariable.get();</span><br><span class="line"></span><br><span class="line">localVariable.remove();</span><br></pre></td></tr></table></figure>
+优点:</li>
+</ol>
+<ul>
+<li>每个线程访问的变量副本都是独立的,避免了共享变量引起的线程安全问题</li>
+<li>由于 ThreadLocal 实现了变量的线程独占,使得变量不需要同步处理,因此能够避免资源竞争</li>
+<li>ThreadLocal 可用于跨方法、跨类时传递上下文数据,不需要在方法间传递参数</li>
+</ul>
+<h2 id="ThreadLocal怎么实现"><a href="#ThreadLocal怎么实现" class="headerlink" title="ThreadLocal怎么实现"></a>ThreadLocal怎么实现</h2><p>ThreadLocal 的实现原理是,每个线程维护一个 Map,key 为 ThreadLocal 对象,value 为想要实现线程隔离的对象</p>
+<ol>
+<li>通过 ThreadLocal 的 set 方法将对象存入 Map 中</li>
+<li>通过 ThreadLocal 的 get 方法从 Map 中取出对象</li>
+<li>Map 的大小由 ThreadLocal 对象的多少决定</li>
+</ol>
+<h2 id="ThreadLocal内存泄漏是怎么回事"><a href="#ThreadLocal内存泄漏是怎么回事" class="headerlink" title="ThreadLocal内存泄漏是怎么回事"></a>ThreadLocal内存泄漏是怎么回事</h2><p>ThreadLocalMap 的 Key 是弱引用,但 Value 是强引用<br>如果一个线程一直在运行并且 value 一直指向某个强引用对象,那么这个对象就不会被回收,从而导致内存泄漏</p>
+<h1 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h1><h2 id="谈一谈你对Java内存模型的理解"><a href="#谈一谈你对Java内存模型的理解" class="headerlink" title="谈一谈你对Java内存模型的理解"></a>谈一谈你对Java内存模型的理解</h2><p>Java 内存模型是 Java 虚拟机规范中定义的一个抽象模型,用来描述多线程环境中共享变量的内存可见性<br><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/content/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt="JVM内存模型"><br>共享变量存储在主内存中,每个线程都有一个私有的本地内存,存储了共享变量的副本</p>
+<ul>
+<li>当一个线程更改了本地内存中共享变量的副本,它需要 JVM 刷新到主内存中,以确保其他线程可以看到这些更改</li>
+<li>当一个线程需要读取共享变量时,它一般会从本地内存中读取;<br> 如果本地内存中的副本是过时的,JVM 会将主内存中的共享变量最新值刷新到本地内存中</li>
+</ul>
+<h2 id="volatile了解吗"><a href="#volatile了解吗" class="headerlink" title="volatile了解吗"></a>volatile了解吗</h2><p>了解</p>
+<ul>
+<li>保证可见性:线程修改 volatile 变量后,其他线程能够立即看到最新值</li>
+<li>防止指令重排:volatile 变量的写入不会被重排序到它之前的代码</li>
+</ul>
+<h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><h2 id="synchronized锁升级了解吗"><a href="#synchronized锁升级了解吗" class="headerlink" title="synchronized锁升级了解吗"></a>synchronized锁升级了解吗</h2><p>会先从<strong>无锁升级为偏向锁,再升级为轻量级锁,最后升级为重量级锁</strong></p>
+<ol>
+<li>当线程第一次获取锁时,会进入偏向模式,锁升级为偏向锁</li>
+<li>当多个线程在不同时段获取同一把锁,即不存在锁竞争的情况时,JVM 会采用轻量级锁来避免线程阻塞,<br>轻量级锁通过自旋来等待锁释放</li>
+<li>如果自旋超过一定的次数,或者一个线程持有锁,一个自旋,<br>又有第三个线程进入 synchronized 加锁的代码时,轻量级锁就会升级为重量级锁</li>
+</ol>
+<h2 id="synchronized和ReentrantLock的区别了解吗"><a href="#synchronized和ReentrantLock的区别了解吗" class="headerlink" title="synchronized和ReentrantLock的区别了解吗"></a>synchronized和ReentrantLock的区别了解吗</h2><ul>
+<li>synchronized 由 JVM 内部的 Monitor 机制实现,ReentrantLock基于 AQS 实现;</li>
+<li>synchronized 可以自动加锁和解锁,ReentrantLock 需要手动 <code>lock()</code> 和 <code>unlock()</code></li>
+</ul>
+<h2 id="讲一下悲观锁和乐观锁"><a href="#讲一下悲观锁和乐观锁" class="headerlink" title="讲一下悲观锁和乐观锁"></a>讲一下悲观锁和乐观锁</h2><p><strong>悲观锁</strong>认为每次访问共享资源时都会发生冲突,所在在操作前一定要先加锁,防止其他线程修改数据</p>
+<p><strong>乐观锁</strong>认为冲突不会总是发生,所以在操作前不加锁,而是在更新数据时检查是否有其他线程修改了数据;<br>如果发现数据被修改了,就会重试</p>
+<h1 id="并发工具类"><a href="#并发工具类" class="headerlink" title="并发工具类"></a>并发工具类</h1><h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ty0119ty.github.io">天意</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ty0119ty.github.io/2025/12/10/ty/wisdom/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9-1/">https://ty0119ty.github.io/2025/12/10/ty/wisdom/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://ty0119ty.github.io" target="_blank">天意</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a><a class="post-meta__tags" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><div class="post-share"><div class="social-share" data-image="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/10/ty/wisdom/Java/JVM%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="JVM知识点-1"><img class="cover" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">JVM知识点-1</div></div><div class="info-2"><div class="info-item-1">前言JVM我自己觉得也是进阶篇的内容了,一般的程序不会涉及到jvm调优这些的,但是想要成为中级甚至是高级程序员,JVM应该是必不可少的一部分,这里就只简单聊一下 内存管理简单说一下JVM的内存区域JVM的内存区域可以分为:程序计数器,虚拟机栈,本地方法栈,堆,方法区 其中堆,方法区的线程是共享的,程序计数器,虚拟机栈,本地方法栈的线程是私有的 程序计数器:程序计数器也被称为 PC 寄存器,是一块较小的内存空间;它可以看作是当前线程所执行的字节码行号指示器 虚拟机栈:Java 虚拟机栈的生命周期与线程相同 对象创建的过程了解吗当我们使用 new 关键字创建一个对象时:  JVM 首先会检查 new 指令的参数是否能在常量池中定位到类的符号引用, 然后检查这个符号引用代表的类是否已被加载、解析和初始化。如果没有,就先执行类加载; 如果已经加载,JVM 会为对象分配内存完成初始化,比如数值类型的成员变量初始值是 0,布尔类型是 false,对象类型是 null; 接下来会设置对象头,里面包含了对象是哪个类的实例、对象的哈希码、对象的 GC 分代年龄等信息; 最后,JVM 会执行构造方法...</div></div></div></a><a class="pagination-related" href="/2025/12/10/ty/wisdom/Java/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="Java集合框架知识点-1"><img class="cover" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Java集合框架知识点-1</div></div><div class="info-2"><div class="info-item-1">前言集合框架这部分就有点深入了解一些数据结构了,比如list呀,map呀之类的,这是作为一名基础开发人员所应该具备的基本开发技能 说一说有哪些常见的集合框架 Collection: List(有序可重复集合):封装了常见的ArrayList(动态数组),LinkedList(链表) Set(无序不可重复集合):有HashSet和TreeSet Queue(队列):ArrayDeque(双端队列),PriorityQueue(优先级队列)   Map: 键值对集合,有常见的HashMap,TreeMap等     一些常见的工具类,都在java.util包里面:  Collections：提供了一些对集合进行排序、二分查找、同步的静态方法 Arrays：提供了一些对数组进行排序、打印、和 List 进行转换的静态方法   List讲一下ArrayList和LinkedList的区别ArrayList 是基于数组实现的,LinkedList 是基于链表实现的;多数情况下,ArrayList 更利于查找,LinkedList 更利于增删,这是由他们的结构体现的,数组可以直接通过下标进行...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/09/ty/wisdom/Redis/Redis%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="Redis知识点-1"><img class="cover" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Redis%E7%9F%A5%E8%AF%86%E7%82%B9.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-09</div><div class="info-item-2">Redis知识点-1</div></div><div class="info-2"><div class="info-item-1">前言作为后端开发中数据操作最主要的中间件之一,这也是基本开发需求所需要具备的能力 基础什么是Redis说一下Redis是一种基于键值对的NoSQL数据库(非关系型数据库);它的主要特点就是把数据放在内存里面,提高读写速度,面对一些对性能要求很高的场景,比如:缓存热点数据,频繁接口调用,都会用到Redis Redis的数据类型 String(字符串):可以用来存储token,验证码等等,常见于单个对象 List(列表):可以用来缓存消息队列,任务列表等 Hash(哈希):键值对集合,适合用来存储对象,如商品信息,用户信息等等 Set(集合):查询效率很高,能达到O(1),主要用于去重,标签,共同好友等 ZSet(有序集合):支持范围查询,常用于排行榜,优先级队列等  为什么Redis快 最简单直观的,数据存在内存里面,I&#x2F;O操作相比于去磁盘里面,快了几个数量级 Redis 采用了基于 I&#x2F;O 多路复用技术的事件驱动模型来处理客户端请求和执行 Redis 命令 Redis 对底层数据结构做了极致的优化,比如String的底层动态字符串支持动态扩容,预分配冗余空间,...</div></div></div></a><a class="pagination-related" href="/2025/11/27/ty/wisdom/MySQL/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="MySQL知识点-1"><img class="cover" src="https://tse3.mm.bing.net/th/id/OIP.tB5jHWvtUBmOBX9ilE8bdwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-27</div><div class="info-item-2">MySQL知识点-1</div></div><div class="info-2"><div class="info-item-1">前言其实MySQL我主要还是背的黑马的那个,但是觉得有点少,之后又去看了看二哥的,现在来也算是总结一下吧  之后要是有面试经历之类的,也可以写在这上面了  基础篇什么是MySQL ?mysql是一种开源的关系型数据库,利用二维表进行存储数据 char和varchar的区别 ? 存储结构方面:char是定长字符,varchar是变长字符 查询效率方面:一般情况下不会有太大的区别,但是当我们要考虑比较强大的性能要求时,我们可以将varchar变为char,比如UUID的36位字符就用char(36)  存储引擎MySQL有哪些常见存储引擎 ?MySQL的常见存储引擎有InnoDB,MyISAM和memory,其中InnoDB是作为MySQL的默认存储引擎,原因:  InnoDB支持事务,但是其他两个不支持 InnoDB支持行级锁,锁的颗粒度更小,但是其他两个不支持 InnoDB还能通过日志实现崩溃恢复,保证了数据的一致性和持久性  但是在实际项目中,要是有其他需求,还是需要按需选择存储引擎 日志MySQL的日志有哪些MySQL的日志主要分为6类  错误日志(error log) – ...</div></div></div></a><a class="pagination-related" href="/2025/12/10/ty/wisdom/Java/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="Java集合框架知识点-1"><img class="cover" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-10</div><div class="info-item-2">Java集合框架知识点-1</div></div><div class="info-2"><div class="info-item-1">前言集合框架这部分就有点深入了解一些数据结构了,比如list呀,map呀之类的,这是作为一名基础开发人员所应该具备的基本开发技能 说一说有哪些常见的集合框架 Collection: List(有序可重复集合):封装了常见的ArrayList(动态数组),LinkedList(链表) Set(无序不可重复集合):有HashSet和TreeSet Queue(队列):ArrayDeque(双端队列),PriorityQueue(优先级队列)   Map: 键值对集合,有常见的HashMap,TreeMap等     一些常见的工具类,都在java.util包里面:  Collections：提供了一些对集合进行排序、二分查找、同步的静态方法 Arrays：提供了一些对数组进行排序、打印、和 List 进行转换的静态方法   List讲一下ArrayList和LinkedList的区别ArrayList 是基于数组实现的,LinkedList 是基于链表实现的;多数情况下,ArrayList 更利于查找,LinkedList 更利于增删,这是由他们的结构体现的,数组可以直接通过下标进行...</div></div></div></a><a class="pagination-related" href="/2025/12/10/ty/wisdom/Java/JavaSE%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="JavaSE知识点-1"><img class="cover" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-10</div><div class="info-item-2">JavaSE知识点-1</div></div><div class="info-2"><div class="info-item-1">前言JavaSE是作为Java的最最基础的知识,作为一名合格的Java开发人员,我认为这个是必须要掌握的,但是在实际开发当中呢,其实还是作为一些基础就行了 基础什么是Java及其特点Java 是一门面向对象的编程语言,由 Sun 公司的詹姆斯·高斯林团队于 1995 年推出;只需要在对应的平台上安装 JDK,就可以实现跨平台,在 Windows、macOS、Linux 操作系统上运行特点:  面向对象:主要是封装,继承,多态 跨平台性:一次编写,到处运行 支持多线程:C++只能通过调用操作系统的API完成多线程操作,但是Java已经封装好了多线程的支持 支持JIT编译(即时编译器):可以在程序运行时将字节码转换为热点机器码来提高程序的运行速度  Java有哪些数据类型基本数据类型和引用数据类型 基本数据类型 整数(int,long,byte,short) 浮点数(double,float) 字符(char) 布尔(boolean)     数据类型 默认值 大小    boolean false 1 字节或 4 字节   char ‘\u0000’ 2 字节   byte 0 1...</div></div></div></a><a class="pagination-related" href="/2025/12/10/ty/wisdom/Java/JVM%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="JVM知识点-1"><img class="cover" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-10</div><div class="info-item-2">JVM知识点-1</div></div><div class="info-2"><div class="info-item-1">前言JVM我自己觉得也是进阶篇的内容了,一般的程序不会涉及到jvm调优这些的,但是想要成为中级甚至是高级程序员,JVM应该是必不可少的一部分,这里就只简单聊一下 内存管理简单说一下JVM的内存区域JVM的内存区域可以分为:程序计数器,虚拟机栈,本地方法栈,堆,方法区 其中堆,方法区的线程是共享的,程序计数器,虚拟机栈,本地方法栈的线程是私有的 程序计数器:程序计数器也被称为 PC 寄存器,是一块较小的内存空间;它可以看作是当前线程所执行的字节码行号指示器 虚拟机栈:Java 虚拟机栈的生命周期与线程相同 对象创建的过程了解吗当我们使用 new 关键字创建一个对象时:  JVM 首先会检查 new 指令的参数是否能在常量池中定位到类的符号引用, 然后检查这个符号引用代表的类是否已被加载、解析和初始化。如果没有,就先执行类加载; 如果已经加载,JVM 会为对象分配内存完成初始化,比如数值类型的成员变量初始值是 0,布尔类型是 false,对象类型是 null; 接下来会设置对象头,里面包含了对象是哪个类的实例、对象的哈希码、对象的 GC 分代年龄等信息; 最后,JVM 会执行构造方法...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">天意</div><div class="author-info-description">字节和心脏只有一个能跳动</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ty0119ty" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:ty011919ty@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-number">2.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.1.</span> <span class="toc-text">说一下进程和线程的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">说一下线程的几种创建方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8run-%E8%80%8C%E6%98%AF%E7%94%A8start"><span class="toc-number">2.3.</span> <span class="toc-text">为什么不直接调用run(),而是用start()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%9C%89%E5%87%A0%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="toc-number">2.4.</span> <span class="toc-text">线程有几种状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BC%BA%E5%88%B6%E5%81%9C%E6%AD%A2%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.4.1.</span> <span class="toc-text">如何强制停止线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E8%AF%B4-sleep-%E5%92%8C-wait-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.5.</span> <span class="toc-text">说一说 sleep 和 wait 之间的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="toc-number">2.6.</span> <span class="toc-text">怎么保证线程安全</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ThreadLocal"><span class="toc-number">3.</span> <span class="toc-text">ThreadLocal</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadLocal%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">3.1.</span> <span class="toc-text">ThreadLocal是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadLocal%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.2.</span> <span class="toc-text">ThreadLocal怎么实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadLocal%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B"><span class="toc-number">3.3.</span> <span class="toc-text">ThreadLocal内存泄漏是怎么回事</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">Java内存模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E4%BD%A0%E5%AF%B9Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">4.1.</span> <span class="toc-text">谈一谈你对Java内存模型的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#volatile%E4%BA%86%E8%A7%A3%E5%90%97"><span class="toc-number">4.2.</span> <span class="toc-text">volatile了解吗</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%94%81"><span class="toc-number">5.</span> <span class="toc-text">锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#synchronized%E9%94%81%E5%8D%87%E7%BA%A7%E4%BA%86%E8%A7%A3%E5%90%97"><span class="toc-number">5.1.</span> <span class="toc-text">synchronized锁升级了解吗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#synchronized%E5%92%8CReentrantLock%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%86%E8%A7%A3%E5%90%97"><span class="toc-number">5.2.</span> <span class="toc-text">synchronized和ReentrantLock的区别了解吗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B2%E4%B8%80%E4%B8%8B%E6%82%B2%E8%A7%82%E9%94%81%E5%92%8C%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">5.3.</span> <span class="toc-text">讲一下悲观锁和乐观锁</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number">6.</span> <span class="toc-text">并发工具类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">7.</span> <span class="toc-text">线程池</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/12/10/ty/wisdom/Java/JVM%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="JVM知识点-1"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM知识点-1"/></a><div class="content"><a class="title" href="/2025/12/10/ty/wisdom/Java/JVM%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="JVM知识点-1">JVM知识点-1</a><time datetime="2025-12-10T02:39:06.000Z" title="发表于 2025-12-10 10:39:06">2025-12-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/10/ty/wisdom/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="Java并发编程知识点-1"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java并发编程知识点-1"/></a><div class="content"><a class="title" href="/2025/12/10/ty/wisdom/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="Java并发编程知识点-1">Java并发编程知识点-1</a><time datetime="2025-12-10T02:38:38.000Z" title="发表于 2025-12-10 10:38:38">2025-12-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/10/ty/wisdom/Java/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="Java集合框架知识点-1"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java集合框架知识点-1"/></a><div class="content"><a class="title" href="/2025/12/10/ty/wisdom/Java/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="Java集合框架知识点-1">Java集合框架知识点-1</a><time datetime="2025-12-10T02:38:16.000Z" title="发表于 2025-12-10 10:38:16">2025-12-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/10/ty/wisdom/Java/JavaSE%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="JavaSE知识点-1"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Java%E7%9F%A5%E8%AF%86%E7%82%B9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaSE知识点-1"/></a><div class="content"><a class="title" href="/2025/12/10/ty/wisdom/Java/JavaSE%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="JavaSE知识点-1">JavaSE知识点-1</a><time datetime="2025-12-10T02:37:41.000Z" title="发表于 2025-12-10 10:37:41">2025-12-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/09/ty/wisdom/Redis/Redis%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="Redis知识点-1"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/article/Redis%E7%9F%A5%E8%AF%86%E7%82%B9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis知识点-1"/></a><div class="content"><a class="title" href="/2025/12/09/ty/wisdom/Redis/Redis%E7%9F%A5%E8%AF%86%E7%82%B9-1/" title="Redis知识点-1">Redis知识点-1</a><time datetime="2025-12-09T13:29:00.000Z" title="发表于 2025-12-09 21:29:00">2025-12-09</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 天意</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
