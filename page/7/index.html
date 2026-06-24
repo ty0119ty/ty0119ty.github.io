@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>天意 - 欢迎来到我的博客</title><meta name="author" content="天意"><meta name="copyright" content="天意"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Alive to live">
+<meta property="og:type" content="website">
+<meta property="og:title" content="天意">
+<meta property="og:url" content="https://ty0119ty.github.io/page/7/index.html">
+<meta property="og:site_name" content="天意">
+<meta property="og:description" content="Alive to live">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg">
+<meta property="article:author" content="天意">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-32.jpg"><link rel="canonical" href="https://ty0119ty.github.io/page/7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":"zh-CN","highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '天意',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas-categories"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas-about"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header" style="background-image: url(https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/background-web1-1920x1080.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-32.jpg" alt="Logo"><span class="site-name">天意</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas-categories"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas-about"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">天意</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/ty0119ty" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:ty011919ty@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/08/14/ty/project/zzyl/%E4%B8%AD%E5%B7%9E%E5%85%BB%E8%80%81Day2/" title="中州养老Day2">中州养老Day2</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-14T03:02:48.000Z" title="发表于 2025-08-14 11:02:48">2025-08-14</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-05T08:52:51.076Z" title="更新于 2026-02-05 16:52:51">2026-02-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/">项目经历</a></span></div><div class="content">中州养老Day2-1好好学习,天天向上数据库表的设计 考虑数据长度 在满足长度的前提下,尽量减少存储空间 在存储空间和性能上面找到平衡点,既不浪费资源,也要满足业务需求  这样设计表,更高效;还有就是详细的设计,例如 命名方式,数据类型,主键(自增,UUID,雪花),4大类型字段(基础字段,业务字段,冗余字段,关联字段) 这是今天护理模块的接口文档,我看看能不能根据接口文档自己独立完成这个模块  https://heuqqdmbyk.feishu.cn/wiki/GKRFwNUwgiWuMHky53WchAron9z  独立完成了一个接口感觉还是好有收获,一个真正的项目,看着接口文档,一步一步实现这个接口的功能,但是写的时候还是要结合一些其他写好了的Controller呀,Service呀来结合利用,但是还是写出来了,在线文档Swagger里面测试已经成功了,但是现在的问题就是,我之前是用的Mybatis-Plus,这个项目用的就是Mybatis,要自己去写.xml文件,还有数据库的操作(其实也不是不行,反正面试的时候也要问数据库的一些相关知识)相当于这个接口不完整,能实现一个表...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/08/11/ty/project/zzyl/%E4%B8%AD%E5%B7%9E%E5%85%BB%E8%80%81Day1/" title="中州养老Day1">中州养老Day1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-11T15:05:26.000Z" title="发表于 2025-08-11 23:05:26">2025-08-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-05T08:52:47.213Z" title="更新于 2026-02-05 16:52:47">2026-02-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/">项目经历</a></span></div><div class="content">开始新项目遇到的问题: 1.项目的oss需要自己再配置一下 2.数据库的信息也要自己配置 3.新添房间类型的时候,图片上传无法成功,需要去前端文件里面的DialogFrom.vue文件里面修改handleSuccess()函数,将photo的值从params.response.data变为params.response.msg,这样就可以显示图片并且成功实现功能了 熟悉项目:工作开发一般都是在已有项目基础上进行修改,编程;(也有新立项的那种),所以想要快速进行项目编写,必须先要快速熟悉项目模块  阅读原型文档+需求分析PRD(Product Requirements Document) 阅读表结构(数据库) 实际体验功能,感受逻辑 阅读对应功能的代码实现  接口设计规范:  请求路径: 命名:以模块名进行区分(英文) 请求方式: 符合restFul风格; (查)GET (改)PUT (增)POST (删)DELETE 接口参数: 前端传JSON,@RequestBody注解,后端接收DTO 接口返回: 统一返回;返回VO  Swagger:一个规范完整的框架,用于生成,描述,调用...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">天意</div><div class="author-info-description">Alive to live</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ty0119ty" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:ty011919ty@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/24/ty/AI/rag/RAG%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%983/" title="RAG细节问题3"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/RAG.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RAG细节问题3"/></a><div class="content"><a class="title" href="/2026/06/24/ty/AI/rag/RAG%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%983/" title="RAG细节问题3">RAG细节问题3</a><time datetime="2026-06-24T03:40:17.000Z" title="发表于 2026-06-24 11:40:17">2026-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/24/ty/AI/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E5%8F%91%E6%95%A3%E6%80%A7%E6%80%9D%E8%80%83/" title="AI时代的发散性思考">AI时代的发散性思考</a><time datetime="2026-06-24T02:54:19.000Z" title="发表于 2026-06-24 10:54:19">2026-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/23/ty/life/27%E5%B1%8A%E4%BF%A1%E9%99%A2%E5%AE%9E%E4%B9%A0%E6%8B%9B%E8%81%98%E4%BC%9A/" title="27届信院实习招聘会">27届信院实习招聘会</a><time datetime="2026-06-23T11:02:37.000Z" title="发表于 2026-06-23 19:02:37">2026-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/16/ty/AI/rag/RAG%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%982/" title="RAG相关问题2"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/RAG.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RAG相关问题2"/></a><div class="content"><a class="title" href="/2026/06/16/ty/AI/rag/RAG%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%982/" title="RAG相关问题2">RAG相关问题2</a><time datetime="2026-06-16T06:56:46.000Z" title="发表于 2026-06-16 14:56:46">2026-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/11/ty/AI/skills/Skill%E7%AF%87%E9%9D%A2%E8%AF%95/" title="Skill篇面试"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/Skills.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Skill篇面试"/></a><div class="content"><a class="title" href="/2026/06/11/ty/AI/skills/Skill%E7%AF%87%E9%9D%A2%E8%AF%95/" title="Skill篇面试">Skill篇面试</a><time datetime="2026-06-11T06:52:19.000Z" title="发表于 2026-06-11 14:52:19">2026-06-11</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Ai/"><span class="card-category-list-name">Ai</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/algorithm/"><span class="card-category-list-name">algorithm</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/life/"><span class="card-category-list-name">life</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/notice/"><span class="card-category-list-name">notice</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/skills/"><span class="card-category-list-name">skills</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/springcloud/"><span class="card-category-list-name">springcloud</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%85%AB%E8%82%A1/"><span class="card-category-list-name">八股</span><span class="card-category-list-count">7</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/XiaoZhi-RAG/" style="font-size: 1.1em; color: #999">XiaoZhi_RAG</a> <a href="/tags/zzyl/" style="font-size: 1.5em; color: #99a9bf">zzyl</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/06/">
+            <span class="card-archive-list-date">
+              六月 2026
+            </span>
+            <span class="card-archive-list-count">8</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/05/">
+            <span class="card-archive-list-date">
+              五月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/03/">
+            <span class="card-archive-list-date">
+              三月 2026
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              二月 2026
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">9</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/11/">
+            <span class="card-archive-list-date">
+              十一月 2025
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">7</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">62</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-06-24T12:00:25.445Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 天意</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
