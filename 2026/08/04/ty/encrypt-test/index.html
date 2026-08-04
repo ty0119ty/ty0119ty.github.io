@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>这是一篇加密测试文章 | 天意</title><meta name="author" content="天意"><meta name="copyright" content="天意"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这是为了演示文章加密功能而创建的测试文章。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="这是一篇加密测试文章">
+<meta property="og:url" content="https://ty0119ty.github.io/2026/08/04/ty/encrypt-test/index.html">
+<meta property="og:site_name" content="天意">
+<meta property="og:description" content="这是为了演示文章加密功能而创建的测试文章。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg">
+<meta property="article:published_time" content="2026-08-04T06:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-04T12:47:16.038Z">
+<meta property="article:author" content="天意">
+<meta property="article:tag" content="test">
+<meta property="article:tag" content="encrypt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "这是一篇加密测试文章",
+  "url": "https://ty0119ty.github.io/2026/08/04/ty/encrypt-test/",
+  "image": "https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg",
+  "datePublished": "2026-08-04T06:00:00.000Z",
+  "dateModified": "2026-08-04T12:47:16.038Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "天意",
+      "url": "https://ty0119ty.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-32.jpg"><link rel="canonical" href="https://ty0119ty.github.io/2026/08/04/ty/encrypt-test/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":"zh-CN","highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '这是一篇加密测试文章',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas-categories"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas-about"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-32.jpg" alt="Logo"><span class="site-name">天意</span></a><a class="nav-page-title" href="/"><span class="site-name">这是一篇加密测试文章</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas-categories"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas-about"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">这是一篇加密测试文章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-04T06:00:00.000Z" title="发表于 2026-08-04 14:00:00">2026-08-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-04T12:47:16.038Z" title="更新于 2026-08-04 20:47:16">2026-08-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/test/">test</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="Oh, this is an invalid password. Check and try again, please."
+     data-whm="Oh, this is an invalid password. Check and try again, please."
+     data-salt="889fa0d908079cad0402882987c6d7334cd1fce193a479c2ebaff172d86d0f82"
+     data-nonce="5ce075698222425bdbaf7cf2"
+     data-kdf-iterations="250000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    e0e1c268e9dc556d6df7161550d6b34a939fc352c4d20f591e72960f04fe67355de73532aeaade0606519239b0dcddd3f0d9c9751164c41e454a2ad075f8bb8e6fd039fa2c0f3fdc95460395b47eddb14ce1f80bcfee8cbb7f6e19f1f396111a0e4d54556befeb1b1ad4481c58b0c3b955a48e2a856cb8a19bc3c10cb8fc4a90e1c84e28173f27428511180534fecd841d8abc51b4f2249b16c82cbce79bc75628463a6078b3f653d3ceecb5428d7a25921b15788bf0aff8d6da2c97a3950ea9d00ce701f03ebe1671e343c28d4b996662f2d975972cd7bcd63ddfb5f2c26ec834c6f71ab0805288c5edef931b9ff32fe6845d9faa9c11ef0baa4843c7a1711e64b202c9739d15fd781b1c3f11154b05bbdab39fe6f1bf0981dd6415035ec17496f3dbf13fc535def642c8a347df64f5c5620fdcc56a7b4a691d727bbfac6c47bdeb5388d1c9b52fd0ee36884d431fd82fd5c1c2b048a2447d89e03640609f3a804c0b9f1f8f464ba525128909af2f90a3ddf0f6088f2a9f61ef1ed33b02d90d676a913e754862309bf2a9d07ed2bb0b70a6a55d9ca8610d62362c16cdaa1d4373410c29b9c700b8ef5554c67fc042416681b92a3a3832782674acc07746ff2eb77a46cb29cdae00e1fb5df979a9a581b8dd46f017eae041b49100644bd8eb5c3761cb8054f628aa16946b7b8162ccc70d9ec5a1b14dab62f2021b649cc0c2b4d5f632d5cde2967fb9f63040851d5a25b19e7d7775b4ecf9484e74640c469ce97805c7fc474bed6fcb87fa8f678d94d3364c5e79ab3b84678fc3a6e2489aa63c82123e0d0490c51a006fb135020eaa64863f3fc2fca8a30e46f2b2730c285139be1c265448dbd030d0d9c1cbae91a4ac89310b474af95b5a94f3437fa526a094aa2829031f046fa874f9a36109d408408d75413d04de8bf21499f104518dad92abbdcde615bfb226b6ca53ebeb08877ab7fc449b9c410ea6707721336e6c4ed27aa24af5ef4e9ef9e13df5206c03b77b478eb89b76279f9a50512affa7c90274665d360aa7771a84384d9f8481157d2e6e719a86cd27b22891c028e5266d4a18426cf2a11f4032f0c478cc4a66d670e4c30af45abdab116693f33fe9877f110a4d35555e8a402a5768349df1bb6f9ac360b520e5ac4911824dd7c93a8c63abac2a7122a47db735c54fd23992eb92f9ed8cd8b010ebf88fe6488c20cb1071c573626d613e8914f8c4eb6a18147ae5cbedf3d46be879eb34e8f91da883d609030612cbe47b7e3a8ea16c9e4f1fd63abe191fd24aa6d92d4c8fa172510bfdece9e5c88133d75219a0de416902e2ed6e9d14f58b357d4ed708ac2e68a85e805eb7577e2b222ad318d9b28e92fe08714c1ca664c433dda28fdcb5170092ceefce5d53bbe0ed8261b6288d28aea6e2abcfb0ced766716c74e265adb682e702177ae81929e8d397f243e0f54d701504065933096130513d84707d4f3c7eda6ee810618103390b3561fa15cb7044adf506aa8c08c849a70ff92adc8f34d2e3ca6e2570e250b06aefcd492254f3eca5c5dbc7c8943fe5c768361ea5e798e484d5b0becfc905ea8f55084d8e67a0bfb7714f0462fedafb9dd0007eaa2e60222239a3c2c359d6f0b851d42565e624e95cc825cb3f0f5e80a14a7ab1eedf603484fd00989d03371c02d4dd9dd9fac83c017becd9323620016c9c54c5fef298a5ba7a312801230039a8dc3d80e3b13d37e0a5df46ea9cb1b72ee34ca959593d165db11d743ad3f980923ab517fd316e39e8e5b4414e52e79c5d957911ac1bf1c856efe67d40d8bea041130732afbfdfbf5cbd98c3f90e23256c528c7b3563c7c1ece6df063daadae4f7698753acf785988de9fbaf32931357ed40f66c30acc350bc9de3d069797c3384a291ab4ad6146326c178d8e35c53adda70e3e24ffa65e23a08ba85e4e9995a0a4e0316eeeb1f6da27f1ab41808796b3545aa34bd39386e81e1e677d104a22621123d55171bd06c39cc22e8d619d5d927669ceba281b9d005a7767dc714c2d24eafc282d01bfc1627a78f7ad2ef307cc418a5a75fc4073d4d66dffdff2c1b0ee37743409430f444bf2a5d2ab0a945e6ffcc7c40e464412c1739075c0826db10ec90b7de3d97606b3fb7cb7d2c721cd94d5a39a6598853c530e534012656cbf4cda4874b87fe6a37c12fd696f1a333a293c93b38e7580be0b8d3c1f9513c1411648b3d1565859846f5ff4a389165380d8ed4f0a9bbed52b3b96dbc950cabdfb4b618f64db802bbc7a1d11db430c12ae6095e32131d428988cbf02f1931a5b7877d615b50199978315ff6a1a6e02c64bd54da6b074bfd6fd94e3dc28840890462f8496941acd182acea85bce4dd1281f8e1940ef22a510037431ede095e3a032bfbb384fa92bf71a92897592542cda7ed81bd6ee2a4e73faa8999e274027d6b6a14c0355c6a0a1ad5ffd51202abb3e39e970624b0d6a8a00dab5a6ad07ebc276fd9efee103a2f1d58250c59b801e4157c8019c08a2deb4c3e214342a05cc2b9f993e1077d383a3fac3dfaabcf4cbe9f96307095cb3907e9cc6e673740d606b1bf5a4069079f7a148fc09ea30f54e086f1466db7471d7e13868633cd9d5818c83448a127f830fbd654b45ecdfbb9cc347f2a80ae59e680e6a929f1bc859a64b12746eb666455742088a1c47d7ce8a2577b2e61848a4de5f6a2b27ef1f68480ddfbb65e718ed34cf17c4c5700c74eedc3ec18f9de22d7b0eca23b4a617f8ce72d1e0c24002622c617b36ec6aa86460aff417e13b635e37b950e77be08d4b5a1ecb50555f7a1ffc44c6bc682fb5008c718821f905557b6a0df37720569fba0c925aef2c7b4bb778fbf2f039b5c2b63d9aa6e95603fe05c53ec0023c1f656594d2b5fa82f8121ee852debafef42684209762a52b23b55c05cc220e66b87f98509eae3b92231126c29abfa8398c119b16b944508dd2e78b0b9f8b364521062420b0c42a5f4e60b0bf255e666325c8e2cf48a28bf8e5451e72da146f41a03856ee83568a5eb9c0dc323fc621a4f0858631d5e8bd31442d069bbca4671eace0fd23b0f2cc97d1c93cbf35432198479e4f444c9e3d08ccf0efad6b62cc2d0a6bfe2e4e6f958b3f49a7e8a1340904955def10b292fc7e8345b63f3f99d771310365ba3180049806ad8782de4d99b6ec540e3d06c
+  </script>
+  <div class="hbe hbe-content">
+    <form id="hbeForm" class="hbe hbe-form" onsubmit="return false">
+      <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码（提示：123456）以查看本文。</span>
+      </label>
+    </div>
+      <button class="hbe hbe-button" type="submit">Decrypt</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.9e70f1e1d2.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ty0119ty.github.io">天意</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ty0119ty.github.io/2026/08/04/ty/encrypt-test/">https://ty0119ty.github.io/2026/08/04/ty/encrypt-test/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://ty0119ty.github.io" target="_blank">天意</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/test/">test</a><a class="post-meta__tags" href="/tags/encrypt/">encrypt</a></div><div class="post-share"><div class="social-share" data-image="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/08/04/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B005/" title="实习周记05"><img class="cover" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/%E5%8D%8E%E9%82%A6logo.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">实习周记05</div></div><div class="info-2"><div class="info-item-1">实习Day01(8-03)ok呀,这周也是事情开始多起来了,又是王经理的表单修改(上周都没怎么看,都去摸鱼去了),然后就是王老师的票务系统的了解,但是今天王老师没有开会,不知道是怎么了  颤颤巍巍地摸鱼  实习Day02(8-04)我的妈呀大姐 今天来了多少事情 王经理的表单做了一些,但是有些表单根本就找不到,还有就是需要隐藏的无法隐藏,只有明天再看看了 王老师的票务系统今天开会了,说是了解的还不够细致,需要每一个功能都要注意到,主要就是看发的那个文档,可是我是开发人员的嘛,后面再了解吧,然后让邓老师给了我们一个样例票务系统的环境,让我们去看看 不是哥们,王老师还有要求,说是又要写一个skill出来,主要的操作就是用skill直接操作数据库,就是类似于SQLBot的一个东西,然后让我配合王佼老师,一起开发出来,然后今天发给我了一些数据  今天我是实习生,还是说正式工作都是这样的吗,不是很了解,慢慢看吧 实习Day03(8-05)实习Day04(8-06)实习Day05(8-07)</div></div></div></a><a class="pagination-related" href="/2026/08/01/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B004/" title="实习周记04"><img class="cover" src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/%E5%8D%8E%E9%82%A6logo.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">实习周记04</div></div><div class="info-2"><div class="info-item-1">实习Day01(7-27)感觉没什么比较急的事,杨老师和王经理都出差去了,说是去云南大理了,咋不带上我一起呢,哈哈哈,剪剪视频摸摸鱼  摸鱼的一天  实习Day02(7-28)666,今天上班忘记打卡了,又要去补卡了,服了都 杨老师ok呀,反正今天是把杨老师的需求弄完了,之后就慢慢一步一步发出去吧,免得看起来我效率很高一样,  依旧美美摸鱼的一天  实习Day03(7-29)上周不是说建了一个群聊吗,然后今天开始拉人进去了(我以为他们自己进来呢,还要我人工拉),甲方就是了不起是吧,不都是子公司的吗,也是无敌了,然后将案例和案例视频都上传了,也发了群公告了 实习Day04(7-30)ok呀,今天王老师又有新的任务了,说是让我和同事规划一个景区票务系统,然后角色就类似于项目经理,我寻思着我貌似是开发人员吧,咋来项目经理的角色了,算了,领导说啥就是啥吧,然后发给我俩了两份文档,让我们去看一下,看完了没啥思路,问问ai吧 实习Day05(7-31)今天王老师想要开会了解一下我和同事了解的怎么样了,怎么这么快了,之前不是挺悠闲的吗,是开始催项目了吗,不知道,然后同事有事,就下周再说吧 </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/QQ%E5%A4%B4%E5%83%8F-1024.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">天意</div><div class="author-info-description">Alive to live</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ty0119ty" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:ty011919ty@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content toc-div-class" style="display:none"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E4%B8%80%E7%AF%87%E5%8A%A0%E5%AF%86%E6%96%87%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">这是一篇加密文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%AE%B5%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">一段示例代码</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/04/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B005/" title="实习周记05"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/%E5%8D%8E%E9%82%A6logo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实习周记05"/></a><div class="content"><a class="title" href="/2026/08/04/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B005/" title="实习周记05">实习周记05</a><time datetime="2026-08-04T12:25:29.000Z" title="发表于 2026-08-04 20:25:29">2026-08-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/04/ty/encrypt-test/" title="这是一篇加密测试文章">这是一篇加密测试文章</a><time datetime="2026-08-04T06:00:00.000Z" title="发表于 2026-08-04 14:00:00">2026-08-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/01/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B004/" title="实习周记04"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/%E5%8D%8E%E9%82%A6logo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实习周记04"/></a><div class="content"><a class="title" href="/2026/08/01/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B004/" title="实习周记04">实习周记04</a><time datetime="2026-08-01T02:07:13.000Z" title="发表于 2026-08-01 10:07:13">2026-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/21/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B003/" title="实习周记03"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/%E5%8D%8E%E9%82%A6logo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实习周记03"/></a><div class="content"><a class="title" href="/2026/07/21/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B003/" title="实习周记03">实习周记03</a><time datetime="2026-07-21T01:18:41.000Z" title="发表于 2026-07-21 09:18:41">2026-07-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/15/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B002/" title="实习周记02"><img src="https://ty-my-blog.oss-cn-beijing.aliyuncs.com/blog/%E5%8D%8E%E9%82%A6logo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实习周记02"/></a><div class="content"><a class="title" href="/2026/07/15/ty/internship/HuaBang/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B002/" title="实习周记02">实习周记02</a><time datetime="2026-07-15T08:38:22.000Z" title="发表于 2026-07-15 16:38:22">2026-07-15</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 天意</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
